@@ -37,7 +37,7 @@ import termios
 import tty
 
 msg = """
-Control Your Udacity Bot!
+Control Your Bot!
 ---------------------------
 Moving around:
    u    i    o

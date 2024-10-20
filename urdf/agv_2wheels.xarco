@@ -3,7 +3,7 @@
 
 <robot name="agv_2wheels" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:include filename="$(find slam_project)/urdf/agv_2wheels.gazebo" />
+  <xacro:include filename="$(find agv-slam_rtabmap)/urdf/agv_2wheels.gazebo" />
 
   <link name="robot_footprint"></link>
 
