@@ -3,7 +3,7 @@
 
   <!-- send urdf to param server -->
   <param name="robot_description"
-    command="$(find xacro)/xacro --inorder '$(find agv-slam_rtabma)/urdf/agv_2wheels.xacro'" />
+    command="$(find xacro)/xacro --inorder '$(find agv-slam_rtabmap)/urdf/agv_2wheels.xacro'" />
 
   <!-- Send fake joint values-->
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
