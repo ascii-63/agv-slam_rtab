@@ -1,0 +1,5 @@
+<launch>
+    <!-- Launch the SLAM pose publisher node -->
+    <node name="rtabmap_info" pkg="agv-slam_rtabmap" type="agv-slam_rtabmap_node" output="screen">
+    </node>
+</launch>
