@@ -1,4 +1,4 @@
-#include "agv-slam_rtabmap.h"
+#include "agv-slam_rtabmap/agv-slam_rtabmap.h"
 
 AGV_SLAM_RTABMap::AGV_SLAM_RTABMap(const ros::NodeHandle &_nh, const ros::NodeHandle &_nh_private)
     : nh_(_nh), nh_private_(_nh_private), tfListener(tfBuffer)
@@ -41,8 +41,20 @@ void AGV_SLAM_RTABMap::posePubCallback(const ros::TimerEvent &)
     // Set orientation
     pose_msg.pose.orientation = transformStamped.transform.rotation;
 
+    // Convert quaternion to Euler angles to extract yaw
+    tf2::Quaternion quat(
+        pose_msg.pose.orientation.x,
+        pose_msg.pose.orientation.y,
+        pose_msg.pose.orientation.z,
+        pose_msg.pose.orientation.w);
+    double roll, pitch, yaw;
+    tf2::Matrix3x3(quat).getRPY(roll, pitch, yaw);
+
     // Publish the pose
     pose_pub.publish(pose_msg);
 
-    ROS_INFO("Pose published successfully");
+    ROS_INFO("Local Pose [odom -> footprint]: (%.5f, %.5f, %.5f)",
+             pose_msg.pose.position.x,
+             pose_msg.pose.position.y,
+             yaw);
 }
