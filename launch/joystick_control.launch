@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <launch>
     <arg name="max_linear" default="0.7" />
     <arg name="max_angular" default="3.5" />
@@ -10,7 +10,7 @@
         <param name="coalesce_interval" type="double" value="0.05" />
     </node>
 
-    <node name="joystick_control" pkg="agv-slam_rtab" type="joystick_control.py"
+    <node name="joystick_control_node" pkg="agv-slam_rtabmap" type="joystick_control.py"
         output="screen">
         <param name="max_linear" value="$(arg max_linear)" />
         <param name="max_angular" value="$(arg max_angular)" />
