@@ -2,6 +2,7 @@
 # encoding: utf-8
 
 import rospy
+import math
 from enum import Enum
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import Joy
@@ -31,8 +32,8 @@ class ButtonState(Enum):
 class JoystickController:
     def __init__(self):
         rospy.init_node('joystick_control')
-        self.max_linear = rospy.get_param('~max_linear', 0.4)
-        self.max_angular = rospy.get_param('~max_angular', 2.0)
+        self.max_linear = rospy.get_param('~max_linear', 0.5)
+        self.max_angular = rospy.get_param('~max_angular', math.pi/8)
         self.cmd_vel_topic = rospy.get_param('~cmd_vel', '/cmd_vel')
 
         # Set up subscribers and publishers
@@ -49,8 +50,8 @@ class JoystickController:
         Callback function to handle joystick axes movement.
         """
         twist = Twist()
-        twist.linear.y = value_mapping(
-            axes['lx'], -1, 1, -self.max_linear, self.max_linear)
+        # twist.linear.y = value_mapping(
+        #     axes['lx'], -1, 1, -self.max_linear, self.max_linear)
         twist.linear.x = value_mapping(
             axes['ly'], -1, 1, -self.max_linear, self.max_linear)
         twist.angular.z = value_mapping(

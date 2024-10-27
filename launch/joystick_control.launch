@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
-    <arg name="max_linear" default="0.7" />
-    <arg name="max_angular" default="3.5" />
+    <arg name="max_linear" default="0.5" />
+    <arg name="max_angular" default="0.5" />
     <arg name="cmd_vel" default="/cmd_vel" />
 
     <node name="joystick" pkg="joy" type="joy_node" output="screen">
